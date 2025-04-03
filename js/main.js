@@ -136,4 +136,61 @@ document.addEventListener('DOMContentLoaded', function () {
             dropdownMenu.style.display = 'none';
         });
     }
+
+    // Slideshow functionality
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentSlide = 0;
+    let slideInterval;
+
+    // Function to show a specific slide
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        currentSlide = index;
+        if (currentSlide >= slides.length) currentSlide = 0;
+        if (currentSlide < 0) currentSlide = slides.length - 1;
+        
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+
+    // Function to move to next slide
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    // Function to move to previous slide
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    // Add click event listeners
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    // Add click event listeners to dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Auto slide every 5 seconds
+    function startSlideshow() {
+        slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    // Stop slideshow when mouse is over
+    const slideshowContainer = document.querySelector('.slideshow-container');
+    slideshowContainer.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+    });
+
+    // Resume slideshow when mouse leaves
+    slideshowContainer.addEventListener('mouseleave', startSlideshow);
+
+    // Start the slideshow
+    startSlideshow();
 });
