@@ -93,14 +93,26 @@
     width: auto;
 }
 
-.forgot-password {
-    float: right;
-    color: var(--secondary-color);
-    text-decoration: none;
+.error-message {
+    color: #e50914;
     font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.forgot-password {
+    color: #e50914;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
 }
 
 .forgot-password:hover {
+    color: #f40612;
     text-decoration: underline;
 }
 
@@ -154,4 +166,22 @@
 
 .auth-form.active {
     animation: fadeIn 0.5s ease forwards;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #666;
+}
+
+.auth-switch a {
+    color: #e50914;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.auth-switch a:hover {
+    color: #f40612;
+    text-decoration: underline;
 }
